@@ -1,14 +1,14 @@
 import googleapiclient.discovery
 import json
-
+import os
 
 def main():
 
     channel_name = "CHANNEL_NAME"
     api_service_name = "youtube"
     api_version = "v3"
-    api_key = "API_KEY"
-    
+    api_key = os.environ.get("YOUTUBE_API_KEY")
+
     youtube = googleapiclient.discovery.build(
                api_service_name, 
                api_version, 
@@ -31,6 +31,7 @@ def main():
         order="date",
         type="video"
     )
+    
     response = request.execute()
 
     for video in response["items"]:

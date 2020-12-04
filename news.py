@@ -1,10 +1,10 @@
 import requests
 import json
+import os
 from unidecode import unidecode
 
 def main():
-
-    api_key = "API_KEY"
+    api_key = os.environ.get("NEWS_API_KEY")
     url = f"https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey={api_key}"
 
     response = requests.get(url)

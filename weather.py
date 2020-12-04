@@ -1,4 +1,5 @@
 import pyowm
+import os
 
 def print_weather(weather):
     temperature = weather.temperature("celsius").get("temp")
@@ -17,12 +18,11 @@ def print_weather(weather):
         f"{status}\n"
         f"{detailed_status}\n"
     ))
-    
 
 def main():
     lat = 51.5
     lon = -0.116
-    api_key = "API_KEY"
+    api_key = os.environ.get("OWM_API_KEY")
     owm = pyowm.OWM(api_key)
     mgr = owm.weather_manager()
 
@@ -37,7 +37,6 @@ def main():
     forecast_daily = one_call.forecast_daily
     tomorrows_forecast = forecast_daily[1]
     print_weather(tomorrows_forecast)
-
 
 if __name__ == "__main__":
     main()
